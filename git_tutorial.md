@@ -454,3 +454,8 @@ Changes not staged for commit:
 	* mixed - change staging as well, but not with working directory
 	* hard -- change everything, whatever it is.
 
+sdkjf sf sf
+sfsd
+f
+sf
+sdfs
