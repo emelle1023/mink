@@ -413,4 +413,6 @@ Changes not staged for commit:
 ### Undo commit
 * This is tricky and sometimes what I wanted to do.
 * We can only chnage thet last commit, because nothing else depends on it. that is.
+* We continue to work on it
+* `git commit --amend -m "We want to undo the last commit"
 * 
