@@ -2,4 +2,3 @@
 
 This installation guide aims for MacOS.
 
-another one
