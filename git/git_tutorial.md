@@ -339,5 +339,16 @@ Changes to be committed:
 * As long as the files are 50% similar, then it is considered a rename
 
 ### Method 2
-* `$ git mv old_file.txt new_file.txt`, no need to physically to rename files, just use mv command
+* `$ git mv git_tutorial_1.md git_tutorial.md`, no need to physically to rename files, just use mv command
+* `$ git status`
+
+```
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	renamed:    git_tutorial.md -> git_tutorial_1.md
+```
+* the same thing and ready to be committed.
+* This is one step process.
 * 
