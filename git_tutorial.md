@@ -454,8 +454,14 @@ Changes not staged for commit:
 	* mixed - change staging as well, but not with working directory
 	* hard -- change everything, whatever it is.
 
-sdkjf sf sf
-sfsd
-f
-sf
-sdfs
+
+
+* take a look at the HEAD poniter
+* `cat .git/HEAD` - showing master brunch
+* `cat .git/refs/heads`
+* 'git reset --soft e0c2fd6b4c3558e4158310a8638f3380529dea53` will take you back to the last stable version, but nothing else in your working or staging is changed.
+* You can change the HEAD pointer
+* git rest --soft 065e974b2ba217f4c82af386e68cc54a5b7be1ac, the last currupted one
+* then you can do another commit
+* 
+
