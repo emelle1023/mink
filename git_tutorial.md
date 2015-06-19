@@ -364,3 +364,19 @@ Changes to be committed:
 	renamed:    git_tutorial.md -> git/git_tutorial.md
 ```	
 * `$ git commit -m "Reorganisesd file structure"`
+
+## Undo changes
+
+### Working directory
+* If we didn't mean to delete teh files
+* `git status` it tells us what has been modeifed
+* `git diff` tells you hte changes
+* you will see Red and -
+* So, if we want the respository version back. and replace what I have 
+* `git checkout index.html`
+* but checkout can do the brunch as well... dangerours
+* `git checkout -- index.html`, we are just talking about a file at the current brunch
+* `git status`
+
+### Stating directory
+* 
