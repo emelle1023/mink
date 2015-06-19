@@ -427,7 +427,7 @@ Changes not staged for commit:
 
 ### Undo commit - Method 3
 * this may be best - revert
-* `git revert 89d5d9998f39e8a66c93d8fd55d07af2684b89b4`
+* `git revert def4b34e354c6991c6942a4d712d1b09638e717a`
 * 
 
 
