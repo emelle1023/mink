@@ -231,4 +231,100 @@ This section is a workflow, we must follow each steps
 * You can diff one file `$ git diff git_tutorial.md`
 * `$ git diff` comparing working and staging, as soon as it is added, there won't be a difference
 * `$ git diff --staged`, comparing staging and respository, what has been staged and what has been committed.
-* 
+
+
+## Deleting files
+* Supposed to you added your unwanted files to staged by `$git add...`
+* and then have them committed to respository `$ git commit -m ""`
+
+###Method 1
+* physically remove the file `file_to_delete_1.txt` from your working directory
+* then do `$ git status`, tells us something has been deleted
+	
+	```
+	On branch master
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	deleted:   file_to_delete_1.txt
+	```
+
+* then do `$ git add file_to_delete_1.txt`, 
+* Then do `$ git status` and should say 
+
+	```
+	On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	deleted:    file_to_delete_1.txt
+	```
+
+* the deleted file has not been commited.
+* Then do `$ git commit -m "removed file_to_delete_1.txt"`, it should say
+
+	```
+	[master ba8bc3b] remove file_to_delete_1.txt
+ 1 file changed, 1 deletion(-)
+ delete mode 100644 file_to_delete_1.txt
+ ```
+* we see the fiile is now commited and it actually deletes what is in the repository.
+	
+* To confirm,  do `$git log`, will see what has been commmited.
+
+
+### Method 2 
+
+* Do not physically remove the file, and follow these steps
+* run `$ git rm file_to_delete_2.txt` 
+* Then `$ git status`
+* In one step, it is already in staging, we don't have to do add, method 1 is a 2 step processes.
+
+	```
+	On branch master
+	Changes to be committed:
+	  (use "git reset HEAD <file>..." to unstage)
+
+		deleted:    file_to_delete_2.txt
+	```
+* Now, we can do commit `$ git commit -m "remove file_to_delete_2.txt"`
+* It should say
+
+	```
+	[master de60864] remove file_to_delete_2.txt
+	 1 file changed, 1 deletion(-)
+	 delete mode 100644 file_to_delete_2.txt
+ 
+ 
+* Now, try `$ git log`, will say what has been commited.
+
+
+
+## Renaming
+
+### Mehod 1
+* Physically rename an existing file that was already commited.
+* `$git status`
+
+	```
+	On branch master
+	Changes not staged for commit:
+	  (use "git add/rm <file>..." to update what will be committed)
+	  (use "git checkout -- <file>..." to discard changes in working directory)
+
+		deleted:    git_tutorial.md
+
+	Untracked files:
+	  (use "git add <file>..." to include in what will be committed)
+
+		git_tutorial_1.md
+	```
+
+* It should actually tell us a file is removed and a new file is created an untracked
+
+* `$ git add git_tutorial_1.md` adding the NEW file
+* `$ git rm git_tutorial.md` remove the OLD file
+* `$ git status`
+
+	
