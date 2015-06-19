@@ -351,4 +351,16 @@ Changes to be committed:
 ```
 * the same thing and ready to be committed.
 * This is one step process.
-* 
+* Let's say you remove the existing file to a new folder, we still use
+* physicall create a directory called git
+* `$ git mv git_tutorial.md git/git_tutorial.md`
+* `$ git status`
+
+```
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	renamed:    git_tutorial.md -> git/git_tutorial.md
+```	
+* `$ git commit -m "Reorganisesd file structure"`
