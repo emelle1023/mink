@@ -415,4 +415,5 @@ Changes not staged for commit:
 * We can only chnage thet last commit, because nothing else depends on it. that is.
 * We continue to work on it
 * `git commit --amend -m "We want to undo the last commit"
+* All the commit amend do is to replace the last commit with this new one, that is all. You are not removing the last commit, just replace it
 * 
