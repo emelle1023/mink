@@ -379,4 +379,38 @@ Changes to be committed:
 * `git status`
 
 ### Stating directory
+* undo in the staging index
+* Let's mess up the staging
+* `$ git add git_tutorial.md` where it is a corrupted file
+
+```
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	modified:   git_tutorial.md
+```
+* You siill want all your changes in your working directory
+* you add in something you didn't want that is to be committed to respository, but it is still someething you want to have in your working directory. maybe something you don't want yet people to see it.
+* `$git reset HEAD git_tutorial.md` go to the last commit, where the HEAD is pointing at and bring it in.
+
+```
+Unstaged changes after reset:
+M	git_tutorial.md
+```
+
+* `$ git status`
+
+```
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   git_tutorial.md
+```	
+
+### Undo commit
+* This is tricky and sometimes what I wanted to do.
+* We can only chnage thet last commit, because nothing else depends on it. that is.
 * 
