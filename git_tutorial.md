@@ -410,10 +410,24 @@ Changes not staged for commit:
 	modified:   git_tutorial.md
 ```	
 
-### Undo commit
+### Undo commit - replace the last commit
 * This is tricky and sometimes what I wanted to do.
 * We can only chnage thet last commit, because nothing else depends on it. that is.
 * We continue to work on it
 * `git commit --amend -m "We want to undo the last commit"
 * All the commit amend do is to replace the last commit with this new one, that is all. You are not removing the last commit, just replace it
+
+
+### Undo commit - Method 2
+* Another way is to really checkout the version that we want and then replace the last commit with it
+* Checkout the version you like `$ git checkout fb485686247c5483088 -- hive_installation_guide.md`
+* you will now have this version of hive_isntallation_guide.md in your working directory.
+* `$git commit -m "use this hive_installation.md from this version instead"`
+* You can't do --amend here because it will look exactly the same as in the previous version.
+
+### Undo commit - Method 3
+* this may be best - revert
+* `git revert 89d5d9998f39e8a66c93d8fd55d07af2684b89b4`
 * 
+
+
