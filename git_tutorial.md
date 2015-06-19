@@ -414,20 +414,43 @@ Changes not staged for commit:
 * This is tricky and sometimes what I wanted to do.
 * We can only chnage thet last commit, because nothing else depends on it. that is.
 * We continue to work on it
-* `git commit --amend -m "We want to undo the last commit"
+* `git commit --amend -m` "We want to undo the last commit"
 * All the commit amend do is to replace the last commit with this new one, that is all. You are not removing the last commit, just replace it
+* So, we will still need to add and commit first.
 
 
 ### Undo commit - Method 2
-* Another way is to really checkout the version that we want and then replace the last commit with it
+* Another way is to really checkout the version that we want and then commit.
 * Checkout the version you like `$ git checkout fb485686247c5483088 -- hive_installation_guide.md`
 * you will now have this version of hive_isntallation_guide.md in your working directory.
 * `$git commit -m "use this hive_installation.md from this version instead"`
 * You can't do --amend here because it will look exactly the same as in the previous version.
+* If you do ammend, then you must not used the last previous commit, otherwise it is empty.
 
 ### Undo commit - Method 3
-* this may be best - revert
-* `git revert def4b34e354c6991c6942a4d712d1b09638e717a`
-* 
+* this may be best - revert, that is to revert back before we commit
+* Find the veersion you need, `git revert def4b34e354c6991c6942a4d712d1b09638e717a`
+* this is to bring to your working directory as well as to commit the changes all into resposiotry in one step
+* you are replacing everything in that version to its previous state.
+* `git status` 
 
+	```
+    Revert "trying"
+    
+    This reverts commit cd9329e88c4be3f5c600d65f274547f1df1fe6de.
+	```    
+
+ 
+* you have gone back to its previous committed state, which is still there.
+
+
+### Undo multiple commits
+
+* `git reset`
+* we usually let git to move the HEAD pointer
+* now, we are in control
+* we can go to a commit and take it from there, which will overwrites all the rest of the commit, actually I might like this.
+	* soft - doesn't change staging and working at the same time, safest.
+	* mixed - change staging as well, but not with working directory
+	* hard -- change everything, whatever it is.
 
