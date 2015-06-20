@@ -571,4 +571,9 @@ Switched to branch 'new_feature'
 * `cat .git/HEAD` points at `ref: refs/heads/new_feature`
 * but they are still pointing at the same commit with same SHA
 *  `git commit -am "latest branching"`, you can do both at once
-*  
+*  Now, the new_feature has this latest commit, but Master don't have it, it is still on the old one.
+*  In new_feature, do `git log --oneline`
+
+```b2b64cb latest branching```
+
+* now, switch to master, `git checkout master`
