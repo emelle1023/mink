@@ -454,7 +454,7 @@ Changes not staged for commit:
 	* mixed - change staging as well, but not with working directory
 	* hard -- change everything, whatever it is.
 
-
+### Some reset
 
 * take a look at the HEAD poniter
 * `cat .git/HEAD` - showing master brunch
@@ -465,3 +465,110 @@ Changes not staged for commit:
 * then you can do another commit
 * 
 
+* you can do mixed reset and hard reset.. but I am skipping them for now.
+
+### Remove untracked files from working directory
+* usually the log files compiled directory whatever, you want them too
+* `git clean`
+* It is like this
+* 'git status'
+
+	```
+	Untracked files:
+	  (use "git add <file>..." to include in what will be committed)
+
+		junk.md
+	```	 
+* You can see junk.md is the untracked file
+* `git clean -n`	, and we get this
+``` Would remove junk.md```
+* `git clean -f` forces it to run
+```Removing junk.md```
+* but it also removes it physiclaly, so same as rm
+* but if it is already in the staging directory, it won't be removed.
+* to unstage, `git reset HEAD junk.md`, this is to undo all the add junk.md
+* Everything is permantly deleted
+
+
+## Ignore files
+
+
+## Branching
+
+* Instead of making classes and your new ideas and remove it from master, you can just work on a burnch until you are happy with it.
+* Eventually, merge it to Master
+* Just one working directory
+* You can switch HEAD to Master brunch or your brunch
+* The HEAD is always at the last commit wherever you switch brunch
+
+### To see brunches
+* to see brunches `git branch`
+* `cat .git/HEAD`
+
+	```ref: refs/heads/master```
+
+* That is just what brunch you are on, which is master
+* To see if this is master, you can
+* `ls -la .git/refs/heads`, you should see this
+
+	```
+	drwxr-xr-x  3 emelle  staff  102 19 Jun 18:44 .
+	drwxr-xr-x  4 emelle  staff  136 18 Jun 16:37 ..
+	-rw-r--r--  1 emelle  staff   41 19 Jun 18:44 master
+	192-168-1-109:mink-0.0.1 emelle$ 
+	```
+
+* when we do brunch, it will ad a new brunch there
+* The sha is in
+* `cat .git/refs/heads/master`, it may say `998d1bf0b5c49e218c3e493ee3f6786a9ced034e`
+* and to confirm do `git log --online`
+
+	```
+	998d1bf Another stable version
+	065e974 Completely wrong stuffs commits
+	.
+	.
+	.
+	so on
+	```
+* They both share the master sha
+* To create a new brunch
+* `git brunch new_feature`
+* `git brunch`, you will get
+
+	```
+	* master
+  new_feature
+192-168-1-109:m
+```
+
+* but we are still on the Master branch
+* `ls -la .git/refs/heads`
+
+```
+drwxr-xr-x  4 emelle  staff  136 20 Jun 12:32 .
+drwxr-xr-x  4 emelle  staff  136 18 Jun 16:37 ..
+-rw-r--r--  1 emelle  staff   41 19 Jun 18:44 master
+-rw-r--r--  1 emelle  staff   41 20 Jun 12:32 new_feature
+```
+
+* but the two bracnhes are still pointing at the same commit
+
+* `cat .git/refs/heads/new_feature`, it is the same as `998d1bf0b5c49e218c3e493ee3f6786a9ced034e`
+
+* Is it still pointing to Master?
+* `cat .git/HEADS` still points to master `ref: refs/heads/master`
+*
+
+### To switch branch
+
+* `git checkout new_feature`, you will get
+
+```
+M	git_tutorial.md
+Switched to branch 'new_feature'
+```
+* `cat .git/HEAD` points at `ref: refs/heads/new_feature`
+* but they are still pointing at the same commit with same SHA
+*  `git commit -am "latest branching"`, you can do both at once
+*  
