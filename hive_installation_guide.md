@@ -2,10 +2,4 @@
 
 This installation guide aims for MacOS.
 
-kshf f sdflksf
-
-g f
-sg
-sd
-fg
-s
+Just trying them all.
