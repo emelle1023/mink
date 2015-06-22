@@ -691,4 +691,5 @@ If you are sure you want to delete it, run 'git branch -D branch_to_delete'.
 * we can do a diff `git diff master .. new_feature`, there should be no difference there
 * you can now delete new_feature because 
 * to do merge, make sure it is clean, everything is committed. YES, that is what I think so too.
-* 
+
+### fast-forward merge
