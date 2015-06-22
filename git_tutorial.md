@@ -454,7 +454,7 @@ Changes not staged for commit:
 	* mixed - change staging as well, but not with working directory
 	* hard -- change everything, whatever it is.
 
-
+### Some reset
 
 * take a look at the HEAD poniter
 * `cat .git/HEAD` - showing master brunch
@@ -465,3 +465,230 @@ Changes not staged for commit:
 * then you can do another commit
 * 
 
+* you can do mixed reset and hard reset.. but I am skipping them for now.
+
+### Remove untracked files from working directory
+* usually the log files compiled directory whatever, you want them too
+* `git clean`
+* It is like this
+* 'git status'
+
+	```
+	Untracked files:
+	  (use "git add <file>..." to include in what will be committed)
+
+		junk.md
+	```	 
+* You can see junk.md is the untracked file
+* `git clean -n`	, and we get this
+``` Would remove junk.md```
+* `git clean -f` forces it to run
+```Removing junk.md```
+* but it also removes it physiclaly, so same as rm
+* but if it is already in the staging directory, it won't be removed.
+* to unstage, `git reset HEAD junk.md`, this is to undo all the add junk.md
+* Everything is permantly deleted
+
+
+## Ignore files
+
+
+## Branching
+
+* Instead of making classes and your new ideas and remove it from master, you can just work on a burnch until you are happy with it.
+* Eventually, merge it to Master
+* Just one working directory
+* You can switch HEAD to Master brunch or your brunch
+* The HEAD is always at the last commit wherever you switch brunch
+
+### To see brunches
+* to see brunches `git branch`
+* `cat .git/HEAD`
+
+	```ref: refs/heads/master```
+
+* That is just what brunch you are on, which is master
+* To see if this is master, you can
+* `ls -la .git/refs/heads`, you should see this
+
+	```
+	drwxr-xr-x  3 emelle  staff  102 19 Jun 18:44 .
+	drwxr-xr-x  4 emelle  staff  136 18 Jun 16:37 ..
+	-rw-r--r--  1 emelle  staff   41 19 Jun 18:44 master
+	192-168-1-109:mink-0.0.1 emelle$ 
+	```
+
+* when we do brunch, it will ad a new brunch there
+* The sha is in
+* `cat .git/refs/heads/master`, it may say `998d1bf0b5c49e218c3e493ee3f6786a9ced034e`
+* and to confirm do `git log --online`
+
+	```
+	998d1bf Another stable version
+	065e974 Completely wrong stuffs commits
+	.
+	.
+	.
+	so on
+	```
+* They both share the master sha
+* To create a new brunch
+* `git brunch new_feature`
+* `git brunch`, you will get
+
+	```
+	* master
+  new_feature
+192-168-1-109:m
+```
+
+* but we are still on the Master branch
+* `ls -la .git/refs/heads`
+
+```
+drwxr-xr-x  4 emelle  staff  136 20 Jun 12:32 .
+drwxr-xr-x  4 emelle  staff  136 18 Jun 16:37 ..
+-rw-r--r--  1 emelle  staff   41 19 Jun 18:44 master
+-rw-r--r--  1 emelle  staff   41 20 Jun 12:32 new_feature
+```
+
+* but the two bracnhes are still pointing at the same commit
+
+* `cat .git/refs/heads/new_feature`, it is the same as `998d1bf0b5c49e218c3e493ee3f6786a9ced034e`
+
+* Is it still pointing to Master?
+* `cat .git/HEADS` still points to master `ref: refs/heads/master`
+*
+
+### To switch branch
+
+* `git checkout new_feature`, you will get
+
+```
+M	git_tutorial.md
+Switched to branch 'new_feature'
+```
+* `cat .git/HEAD` points at `ref: refs/heads/new_feature`
+* but they are still pointing at the same commit with same SHA
+*  `git commit -am "latest branching"`, you can do both at once
+*  Now, the new_feature has this latest commit, but Master don't have it, it is still on the old one.
+*  In new_feature, do `git log --oneline`
+
+```b2b64cb latest branching```
+
+* now, switch to master, `git checkout master` gets `Switched to branch 'master'`
+* `git branch` gets 
+	```
+	* master
+	  new_feature`
+	```
+* `git log --oneline` gets you
+
+	```
+	998d1bf Another stable version
+	```
+* I think you just like to commit everything before you switch, because it may overwrite everything on your working directory, or unless we have to copies.
+* To show head 'git show HEAD` shows the commit and what I changed
+
+### Create new branch and swithc branches
+* `git checkout -b good_title`	
+* `git branch`
+* `git log --oneline` If we were on Master, this good_title branch will have the entire Master up until its last commit, all in there, in fact, they are identical.
+* Make a change and then commit
+* `git status`
+* `git add file.md`
+* `git commit -m "A new file with better title"`
+* `git log --oneline`
+* This now has an updated commit, now if we go back to commit
+* `git checkout master`, you won't have th is commit
+* `git log --oneline`
+*  `git log --graph --oneline --decorate --all`, you can see the tip of each branch.
+
+
+### Switching with uncommitted changes
+* when we siwtch branches, it must be clean, that is, you must commit before we switch.
+* iF it is not clean, you can't do a swtich, that is, if you don't commit, and files are still red.
+
+	``` 
+	error: Your local changes to the following files would be overwritten by checkout:
+			git_tutorial.md
+	Please, commit your changes or stash them before you can switch branches.
+	Aborting
+	```
+
+#### Method 1
+* so method 1 is to commit all the time before switching
+* then `git checkout new_branch`
+* but we are talking about mostly clean, if we have a new file being added in a branch, and a switch to a different branch won't cost the lost of data, then we can still switch
+
+
+#### Comparing between branches
+* you can check the difference between different branches
+* `git branch`
+* `git diff master..new_feature` The differences between the tip of HEAD between master and new_feature.
+* But we don't use this much
+* The one starts later in time comes in first..second
+* `git diff --color-words master..new_feature`, just one line instead of one on top of another.
+* You can go comparing parent of the branch `git diff --color-words new_feature..master^`
+* To see if one branch completely cotains another branch
+* `git branch --merged`
+
+```
+	master
+	new_feature
+   *	shorten_title	
+```
+
+* We are on shorten_title branch as everything new_feature has, so we can omit it
+* Now switch branch, `git check new_feature` now we are on new_feature branch
+* `git branch --merged`
+
+```
+	master
+   *	new_feature
+```
+
+* Now you are on new_feature and master contains it but shorten_title isn't included in shorten_title.
+* So, we need to do a merge 
+
+
+#### Renaming branches
+* `git branch --more new_feature seo_title` just renaming it, or
+* `git branch -m new_feature seo_title`	
+* To check ,`git branch`, it should show up
+
+#### Delete branches
+* Try it by creating a new brunch
+* `git branch brach_to_delete`
+* `git branch -d branch_to_delete` or `git branch --delete branch_to_delete`
+* `git branch` just to check, it is powerful and dangerous
+* You cannot delete a branch that you are currently on, so switch branch first
+* `git checkout branch_to_delete`
+* run 'git branch -d branch_to_delete`, you will get
+
+```
+error: Cannot delete the branch 'branch_to_delete` which you are currently on.
+```
+* But even you are on a different, you may still not able to delete a branch.
+* If you just check something in branch which master branch doesn't have or when we commit changes in that branch, you must merge it first. You will get this
+
+```
+error: The branch 'branch_to_delete' is not fully merged.
+If you are sure you want to delete it, run 'git branch -D branch_to_delete'.
+```
+
+* Ok, then do it `git branch -D branch_to_delete`
+* Always use -d, and then do -D is that is what you areally need.
+
+## Merging branches
+
+* you have now tried your things in a new branch, so now, merge it to Master
+* To see the changes between 2 branches, 
+* `git master master..new_feature`
+* The steps are.. Look at the receiver
+* `git checkout master`, you are in the master branch now, master is going to recieve the changes from new_feature
+* `get merge new_feature`, it will tell you the changes are to be made. everying should go there.
+* we can do a diff `git diff master .. new_feature`, there should be no difference there
+* you can now delete new_feature because 
+* to do merge, make sure it is clean, everything is committed. YES, that is what I think so too.
+* 
