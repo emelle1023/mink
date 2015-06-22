@@ -700,3 +700,13 @@ Merge made by the 'recursive' strategy.
 * to do merge, make sure it is clean, everything is committed. YES, that is what I think so too.
 
 ### fast-forward merge
+* you don't need this
+* `git merge --no-ff branch`
+* 
+
+
+## Merge conflicts
+
+
+
+## Resolving Merge Conflicts
