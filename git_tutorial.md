@@ -687,8 +687,15 @@ If you are sure you want to delete it, run 'git branch -D branch_to_delete'.
 * `git master master..new_feature`
 * The steps are.. Look at the receiver
 * `git checkout master`, you are in the master branch now, master is going to recieve the changes from new_feature
-* `get merge new_feature`, it will tell you the changes are to be made. everying should go there.
+* `git merge new_feature`, it will tell you the changes are to be made. everying should go there.
 * we can do a diff `git diff master .. new_feature`, there should be no difference there
+
+```
+Merge made by the 'recursive' strategy.
+ git_tutorial.md | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+``` 
+
 * you can now delete new_feature because 
 * to do merge, make sure it is clean, everything is committed. YES, that is what I think so too.
 
