@@ -576,4 +576,119 @@ Switched to branch 'new_feature'
 
 ```b2b64cb latest branching```
 
-* now, switch to master, `git checkout master`
+* now, switch to master, `git checkout master` gets `Switched to branch 'master'`
+* `git branch` gets 
+	```
+	* master
+	  new_feature`
+	```
+* `git log --oneline` gets you
+
+	```
+	998d1bf Another stable version
+	```
+* I think you just like to commit everything before you switch, because it may overwrite everything on your working directory, or unless we have to copies.
+* To show head 'git show HEAD` shows the commit and what I changed
+
+### Create new branch and swithc branches
+* `git checkout -b good_title`	
+* `git branch`
+* `git log --oneline` If we were on Master, this good_title branch will have the entire Master up until its last commit, all in there, in fact, they are identical.
+* Make a change and then commit
+* `git status`
+* `git add file.md`
+* `git commit -m "A new file with better title"`
+* `git log --oneline`
+* This now has an updated commit, now if we go back to commit
+* `git checkout master`, you won't have th is commit
+* `git log --oneline`
+*  `git log --graph --oneline --decorate --all`, you can see the tip of each branch.
+
+
+### Switching with uncommitted changes
+* when we siwtch branches, it must be clean, that is, you must commit before we switch.
+* iF it is not clean, you can't do a swtich, that is, if you don't commit, and files are still red.
+
+	``` 
+	error: Your local changes to the following files would be overwritten by checkout:
+			git_tutorial.md
+	Please, commit your changes or stash them before you can switch branches.
+	Aborting
+	```
+
+#### Method 1
+* so method 1 is to commit all the time before switching
+* then `git checkout new_branch`
+* but we are talking about mostly clean, if we have a new file being added in a branch, and a switch to a different branch won't cost the lost of data, then we can still switch
+
+
+#### Comparing between branches
+* you can check the difference between different branches
+* `git branch`
+* `git diff master..new_feature` The differences between the tip of HEAD between master and new_feature.
+* But we don't use this much
+* The one starts later in time comes in first..second
+* `git diff --color-words master..new_feature`, just one line instead of one on top of another.
+* You can go comparing parent of the branch `git diff --color-words new_feature..master^`
+* To see if one branch completely cotains another branch
+* `git branch --merged`
+
+```
+	master
+	new_feature
+   *	shorten_title	
+```
+
+* We are on shorten_title branch as everything new_feature has, so we can omit it
+* Now switch branch, `git check new_feature` now we are on new_feature branch
+* `git branch --merged`
+
+```
+	master
+   *	new_feature
+```
+
+* Now you are on new_feature and master contains it but shorten_title isn't included in shorten_title.
+* So, we need to do a merge 
+
+
+#### Renaming branches
+* `git branch --more new_feature seo_title` just renaming it, or
+* `git branch -m new_feature seo_title`	
+* To check ,`git branch`, it should show up
+
+#### Delete branches
+* Try it by creating a new brunch
+* `git branch brach_to_delete`
+* `git branch -d branch_to_delete` or `git branch --delete branch_to_delete`
+* `git branch` just to check, it is powerful and dangerous
+* You cannot delete a branch that you are currently on, so switch branch first
+* `git checkout branch_to_delete`
+* run 'git branch -d branch_to_delete`, you will get
+
+```
+error: Cannot delete the branch 'branch_to_delete` which you are currently on.
+```
+* But even you are on a different, you may still not able to delete a branch.
+* If you just check something in branch which master branch doesn't have or when we commit changes in that branch, you must merge it first. You will get this
+
+```
+error: The branch 'branch_to_delete' is not fully merged.
+If you are sure you want to delete it, run 'git branch -D branch_to_delete'.
+```
+
+* Ok, then do it `git branch -D branch_to_delete`
+* Always use -d, and then do -D is that is what you areally need.
+
+## Merging branches
+
+* you have now tried your things in a new branch, so now, merge it to Master
+* To see the changes between 2 branches, 
+* `git master master..new_feature`
+* The steps are.. Look at the receiver
+* `git checkout master`, you are in the master branch now, master is going to recieve the changes from new_feature
+* `get merge new_feature`, it will tell you the changes are to be made. everying should go there.
+* we can do a diff `git diff master .. new_feature`, there should be no difference there
+* you can now delete new_feature because 
+* to do merge, make sure it is clean, everything is committed. YES, that is what I think so too.
+* 
