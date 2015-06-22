@@ -2,4 +2,4 @@
 
 This installation guide aims for MacOS.
 
-Just trying them all.
+Just trying them all. No good. This is the conflicts.
