@@ -710,3 +710,8 @@ Merge made by the 'recursive' strategy.
 
 
 ## Resolving Merge Conflicts
+* Master and new_feature are teh same.
+* switch branch to master
+* make a new change
+* merge it
+
